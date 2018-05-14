@@ -16,46 +16,4 @@
 			</class>
 		</classes>
 	</test>
-	<test name="AnnouncementTestCases" preserve-order="true">
-		<classes>
-			<class name="testcases.AnnouncementTestCases">
-				<methods>
-					<include name="ANNC_001" />
-					<include name="ANNC_002" />
-					<include name="ANNC_003" />
-					<include name="ANNC_004" />
-					<include name="ANNC_005" />
-					<include name="ANNC_006" />
-					<include name="ANNC_007" />
-					<include name="ANNC_008" />
-					<include name="ANNC_009" />
-					<include name="ANNC_010" />
-					<include name="ANNC_011" />
-					<include name="ANNC_012" />
-					<include name="ANNC_013" />
-				</methods>
-			</class>
-		</classes>
-	</test>
-	<test name="HomeWorkTestCase" preserve-order="true">
-		<classes>
-			<class name="testcases.HomeWorkTestCase">
-				<methods>
-					<include name="HW_001" />
-					<include name="HW_002" />
-					<include name="HW_003" />
-					<include name="HW_004" />
-					<include name="HW_005" />
-					<include name="HW_006" />
-					<include name="HW_007" />
-					<include name="HW_008" />
-					<include name="HW_009" />
-					<include name="HW_010" />
-					<include name="HW_011" />
-					<include name="HW_012" />
-					<include name="HW_013" />
-				</methods>
-			</class>
-		</classes>
-	</test>
 </suite>
