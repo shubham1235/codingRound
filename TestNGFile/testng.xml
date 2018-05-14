@@ -16,4 +16,15 @@
 			</class>
 		</classes>
 	</test>
+	
+	<test name="HotelBooking" preserve-order="true">
+		<classes>
+			<class name="code.HotelBookingTest">
+				<methods>
+					<include name="shouldBeAbleToSearchForHotels" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+	
 </suite>
