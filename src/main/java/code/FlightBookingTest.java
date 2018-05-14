@@ -115,7 +115,7 @@ public class FlightBookingTest {
         
     }
     
-    
+  ///  
     public static void WaitFor_visibility(WebDriver driver, By elementLocator) {
 		(new WebDriverWait(driver, 120)).until(ExpectedConditions.visibilityOfElementLocated(elementLocator));
 	}
