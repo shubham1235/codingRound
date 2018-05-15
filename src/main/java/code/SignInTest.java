@@ -2,11 +2,9 @@ package code;
 
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -28,37 +26,45 @@ public class SignInTest {
 
 		driver.manage().timeouts().pageLoadTimeout(120, TimeUnit.SECONDS);
 		driver.get("https://www.cleartrip.com/");
+
 		GenericFucntion.waitFor(2000);
+		System.out.println("shubahm1");
 		driver.findElement(By.linkText("Your trips")).click();
+		System.out.println("shubahm1");
 		GenericFucntion.waitFor(2000);
-		
+
 		driver.findElement(By.id("SignIn")).click();
-		
-		driver.switchTo().frame(driver.findElement(By.id("modal_window")));
-		
+		System.out.println("shubahm1");
 		GenericFucntion.waitFor(2000);
-		
-	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@class='required email']")));
-		
-	    driver.findElement(By.xpath("//input[@class='required email']")).sendKeys("shubhamverma815@gmail.com");
-		
-	    GenericFucntion.waitFor(1000);
-		
+
+		driver.switchTo().frame(driver.findElement(By.id("modal_window")));
+		System.out.println("shubahm1");
+
+		GenericFucntion.waitFor(5000);
+
+		driver.findElement(By.xpath("//input[@class='required email']")).sendKeys("shubhamverma815@gmail.com");
+		System.out.println("shubahm1");
+		GenericFucntion.waitFor(1000);
+
 		driver.findElement(By.xpath("//input[@class='required password']")).sendKeys("159753");
-		
+
 		System.out.println("shubham1");
-		
+
 		GenericFucntion.waitFor(1000);
-		
+
 		driver.findElement(By.id("signInButton")).click();
-		
+		System.out.println("shubahm1");
 		GenericFucntion.waitFor(1000);
-		
-		String errors1 = driver.findElement(By.id("errors1")).getText();
-		
-		System.out.println(errors1);
-		
-		Assert.assertTrue(errors1.contains("There were errors in your submission"));
+
+		String errors1 = driver.findElement(By.id("errors1")).getText().replaceAll("[\r\n]+", " ");
+		System.out.println("shubahm1");
+		System.out.println(errors1.replaceAll("[\r\n]+", " "));
+
+		Assert.assertTrue(errors1.contains("There were errors in your submission The username or password you entered is incorrect."));
+
+		//if we want to test negative test for login.
+		Assert.assertFalse(errors1.contains("There were errors in your submission The username or password you entered is incorrect."));
+
 		driver.quit();
 	}
 
