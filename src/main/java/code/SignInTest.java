@@ -1,52 +1,65 @@
 package code;
-import com.sun.javafx.PlatformUtil;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class SignInTest {
 
-    WebDriver driver = new ChromeDriver();
+	WebDriver driver;
+	WebDriverWait wait;
 
-    @Test
-    public void shouldThrowAnErrorIfSignInDetailsAreMissing() {
+	@BeforeMethod
+	public void setAllMethod() {
+		this.driver = GenericFucntion.setDriverPath();
 
-        setDriverPath();
+	}
 
-        driver.get("https://www.cleartrip.com/");
-        waitFor(2000);
+	@Test
+	public void shouldThrowAnErrorIfSignInDetailsAreMissing() {
 
-        driver.findElement(By.linkText("Your trips")).click();
-        driver.findElement(By.id("SignIn")).click();
-
-        driver.findElement(By.id("signInButton")).click();
-
-        String errors1 = driver.findElement(By.id("errors1")).getText();
-        Assert.assertTrue(errors1.contains("There were errors in your submission"));
-        driver.quit();
-    }
-
-    private void waitFor(int durationInMilliSeconds) {
-        try {
-            Thread.sleep(durationInMilliSeconds);
-        } catch (InterruptedException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        }
-    }
-
-    private void setDriverPath() {
-        if (PlatformUtil.isMac()) {
-            System.setProperty("webdriver.chrome.driver", "chromedriver");
-        }
-        if (PlatformUtil.isWindows()) {
-            System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
-        }
-        if (PlatformUtil.isLinux()) {
-            System.setProperty("webdriver.chrome.driver", "chromedriver_linux");
-        }
-    }
-
+		driver.manage().timeouts().pageLoadTimeout(120, TimeUnit.SECONDS);
+		driver.get("https://www.cleartrip.com/");
+		GenericFucntion.waitFor(2000);
+		driver.findElement(By.linkText("Your trips")).click();
+		GenericFucntion.waitFor(2000);
+		
+		driver.findElement(By.id("SignIn")).click();
+		
+		driver.switchTo().frame(driver.findElement(By.id("modal_window")));
+		
+		GenericFucntion.waitFor(2000);
+		
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@class='required email']")));
+		
+	    driver.findElement(By.xpath("//input[@class='required email']")).sendKeys("shubhamverma815@gmail.com");
+		
+	    GenericFucntion.waitFor(1000);
+		
+		driver.findElement(By.xpath("//input[@class='required password']")).sendKeys("159753");
+		
+		System.out.println("shubham1");
+		
+		GenericFucntion.waitFor(1000);
+		
+		driver.findElement(By.id("signInButton")).click();
+		
+		GenericFucntion.waitFor(1000);
+		
+		String errors1 = driver.findElement(By.id("errors1")).getText();
+		
+		System.out.println(errors1);
+		
+		Assert.assertTrue(errors1.contains("There were errors in your submission"));
+		driver.quit();
+	}
 
 }
