@@ -30,20 +30,17 @@ public class SignInTest {
 		GenericFucntion.waitFor(2000);
 		System.out.println("shubahm1");
 		driver.findElement(By.linkText("Your trips")).click();
-		System.out.println("shubahm1");
 		GenericFucntion.waitFor(2000);
 
 		driver.findElement(By.id("SignIn")).click();
-		System.out.println("shubahm1");
 		GenericFucntion.waitFor(2000);
 
 		driver.switchTo().frame(driver.findElement(By.id("modal_window")));
-		System.out.println("shubahm1");
-
+		
 		GenericFucntion.waitFor(5000);
 
 		driver.findElement(By.xpath("//input[@class='required email']")).sendKeys("shubhamverma815@gmail.com");
-		System.out.println("shubahm1");
+		
 		GenericFucntion.waitFor(1000);
 
 		driver.findElement(By.xpath("//input[@class='required password']")).sendKeys("159753");
@@ -53,17 +50,15 @@ public class SignInTest {
 		GenericFucntion.waitFor(1000);
 
 		driver.findElement(By.id("signInButton")).click();
-		System.out.println("shubahm1");
 		GenericFucntion.waitFor(1000);
 
 		String errors1 = driver.findElement(By.id("errors1")).getText().replaceAll("[\r\n]+", " ");
-		System.out.println("shubahm1");
 		System.out.println(errors1.replaceAll("[\r\n]+", " "));
 
 		Assert.assertTrue(errors1.contains("There were errors in your submission The username or password you entered is incorrect."));
 
 		//if we want to test negative test for login.
-		Assert.assertFalse(errors1.contains("There were errors in your submission The username or password you entered is incorrect."));
+		//Assert.assertFalse(errors1.contains("There were errors in your submission The username or password you entered is incorrect."));
 
 		driver.quit();
 	}
