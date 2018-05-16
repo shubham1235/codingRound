@@ -6,8 +6,14 @@ package code;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * @author shubham verma
@@ -49,6 +55,18 @@ public class GenericFucntion {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
     }
-
-	
+    
+    
+    public static void WaitFor_visibilityOfElements(WebDriver driver, WebElement element) {
+		(new WebDriverWait(driver, 60)).until(ExpectedConditions.visibilityOf(element));
+	}
+    
+    public static boolean isElementPresent(WebDriver driver, By by) {
+		try {
+			driver.findElement(by);
+			return true;
+		} catch (NoSuchElementException e) {
+			return false;
+		}
+	}
 }
