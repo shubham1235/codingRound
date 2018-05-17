@@ -25,33 +25,45 @@ public class SignInTest {
 	public void shouldThrowAnErrorIfSignInDetailsAreMissing() {
 
 		driver.manage().timeouts().pageLoadTimeout(120, TimeUnit.SECONDS);
+
 		driver.get("https://www.cleartrip.com/");
 
 		GenericFucntion.waitFor(2000);
+		
 		System.out.println("shubahm1");
+		
 		driver.findElement(By.linkText("Your trips")).click();
+		
 		GenericFucntion.waitFor(2000);
 
+		
 		driver.findElement(By.id("SignIn")).click();
+		
 		GenericFucntion.waitFor(2000);
 
+		// switch one main frame to login frame 
 		driver.switchTo().frame(driver.findElement(By.id("modal_window")));
 		
 		GenericFucntion.waitFor(5000);
 
+		// enter email id
 		driver.findElement(By.xpath("//input[@class='required email']")).sendKeys("shubhamverma815@gmail.com");
 		
 		GenericFucntion.waitFor(1000);
 
+		// enter password
 		driver.findElement(By.xpath("//input[@class='required password']")).sendKeys("159753");
 
 		System.out.println("shubham1");
 
 		GenericFucntion.waitFor(1000);
 
+		//click on sign in button
 		driver.findElement(By.id("signInButton")).click();
+		
 		GenericFucntion.waitFor(1000);
 
+		// resutn error message 
 		String errors1 = driver.findElement(By.id("errors1")).getText().replaceAll("[\r\n]+", " ");
 		System.out.println(errors1.replaceAll("[\r\n]+", " "));
 
